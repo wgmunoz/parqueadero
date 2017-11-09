@@ -31,4 +31,19 @@ public interface RegistroService {
 	 * @param idRegistro
 	 */
 	void deleteRegistro (Integer idRegistro);
+	
+	/**
+	 * 
+	 * @param matricula
+	 * @return
+	 */
+	Registro getRegistroByMatricula(String matricula);
+	
+	/**
+	 * 
+	 * @param estado
+	 * @return
+	 */
+	List<Registro> getRegistrosActivos();
+	
 }

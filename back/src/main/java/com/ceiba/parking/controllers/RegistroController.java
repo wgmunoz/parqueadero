@@ -27,11 +27,30 @@ public class RegistroController {
 		return registroService.findAll();
 	}
 
+	@RequestMapping(value = "/registros/activos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Registro> listaRegActivos(){
+		return registroService.getRegistrosActivos();
+	}
+	
 	@RequestMapping(value = "/registros/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Registro> getId(@PathVariable("id") Integer id){
 		Registro registro = null;
 		try {
 			registro = registroService.getRegistroById(id); 
+			if (registro == null) {
+				registro = new Registro();
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<>(registro, HttpStatus.INTERNAL_SERVER_ERROR);
+		}			
+		return new ResponseEntity<>(registro, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/registros/matricula/{matricula}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Registro> getMatricula(@PathVariable("matricula") String matricula){
+		Registro registro = null;
+		try {
+			registro = registroService.getRegistroByMatricula(matricula); 
 			if (registro == null) {
 				registro = new Registro();
 			}

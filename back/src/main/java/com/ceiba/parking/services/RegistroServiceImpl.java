@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ceiba.parking.entities.Registro;
+import com.ceiba.parking.enums.EstadosEnum;
 import com.ceiba.parking.repositories.RegistroRepository;
 
 @Service
@@ -33,5 +34,16 @@ public class RegistroServiceImpl implements RegistroService{
 		registroRepository.delete(idRegistro);
 	}
 
+	@Override
+	public Registro getRegistroByMatricula(String matricula) {
+		Integer estado= EstadosEnum.HABILITADO.isHabilitado();
+		return  registroRepository.findRegistroByMatricula(matricula, estado);			
+				
+	}
 	
+	public List<Registro> getRegistrosActivos() {	
+		Integer estado= EstadosEnum.HABILITADO.isHabilitado();
+		return  registroRepository.findRegistrosActivos(estado);			
+				
+	}
 }
