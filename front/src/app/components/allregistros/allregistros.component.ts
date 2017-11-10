@@ -3,13 +3,13 @@ import { RegistroService } from '../../services/registro.service';
 import { Registro } from '../../entities/registro';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-allregistros',
+  templateUrl: './allregistros.component.html',
+  styleUrls: ['./allregistros.component.css']
 })
-export class RegistroComponent implements OnInit {
+export class AllregistrosComponent implements OnInit {
 
   Allregistros: Registro[];
   statusCode: number;

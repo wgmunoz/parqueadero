@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers, URLSearchParams, RequestOptions} from '@angular/http';
 
 import {Registro} from '../entities/registro';
-import {Observable} from 'rxjs';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Rx';
 
 
 @Injectable()
@@ -23,7 +24,7 @@ export class RegistroService {
 
   // Extracion de datos
   private extractData(res: Response) {
-    let body = res.json();
+    const body = res.json();
     return body;
   }
 

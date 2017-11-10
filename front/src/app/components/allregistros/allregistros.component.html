@@ -1,0 +1,30 @@
+
+
+<h3>Vehiculos Ingresados</h3>
+<a href="#" class="btn btn-primary btn-lg active" role="button">Ingreso</a>
+<!-- Trigger the modal with a button -->
+
+<p></p>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<tr>
+			<th>idRegistro</th>
+			<th>Ubicacion</th>
+			<th>Placa</th>
+			<th>TipoVehiculo</th>
+			<th>Cilindraje</th>
+			<th>Hora de Ingreso</th>
+			<th>Salir</th>
+		</tr>
+		<tr *ngFor="let registro of Allregistros">
+			<td>{{registro.idRegistro}}</td>
+			<td>{{registro.ubicacion.descripcionUbicacion}}</td>
+			<td>{{registro.vehiculo.matricula}}</td>
+			<td>{{registro.vehiculo.tipoVehiculo}}</td>
+			<td>{{registro.vehiculo.cilindraje}}</td>
+			<td>{{registro.horaIngreso}}</td>
+			<td><button type="button" class="btn btn-success">Salir</button></td>
+		</tr>
+	</table>
+</div>
+
