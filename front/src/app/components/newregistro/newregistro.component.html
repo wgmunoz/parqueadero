@@ -1,0 +1,67 @@
+<meta charset="UTF-8">
+<hr>
+<form (ngSubmit)="registrar(forma)" #forma="ngForm">
+
+	<div class="panel panel-default col-centrada" style="width: 80%;">
+		<div class="panel-heading">
+			<h3 class="panel-title">Formulario de Ingreso</h3>
+		</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<label for="cboTipoVehiculo">Tipo de Vehiculo</label> <select
+					id="cboTipoVehiculo"
+					class="form-control btn btn-default dropdown-toggle">
+					<option value="2">AUTOMOVIL</option>
+					<option value="1">MOTOCICLETA</option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="txtMatricula">Placa</label>
+				 <div class="col-8">				 
+				  <input
+					class="form-control" id="matricula" ngModel #matricula="ngModel"  required
+					placeholder="Introduce la placa">
+				<div *ngIf="placa.errors?.required" class="form-control-feedback">
+					Placa es requerido</div> 
+					</div>
+			</div>
+
+			<div class="form-group">
+				<label for="txtCilindraje">Cilindraje</label> <input type="text"
+					class="form-control" id="txtCilindraje" ngModel #cilindraje="ngModel"  required
+					placeholder="Introduce el cilindraje">
+					<div *ngIf="cilindraje.errors?.required" class="form-control-feedback">
+					Cilindraje es requerido</div>
+			</div>
+
+			<div class="form-group">
+				<label for="cboUbicacion">Ubicación</label> <select
+					id="cboUbicacion"
+					class="form-control btn btn-default dropdown-toggle">
+					<option value="2">AUTO1</option>
+					<option value="4">AUTO2</option>
+					<option value="1">MOTO1</option>
+					<option value="3">MOTO2</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="panel-footer">
+			<div class="form-group">
+				<label class="col-2 col-form-label">&nbsp;</label>
+				<div class="input-group col-md-8 pull-right">
+					<button type="submit" class="btn btn-outline-primary btn btn-info">
+						Guardar</button>
+				</div>
+			</div>
+			<div *ngIf="statusCode; else processing">
+				<div *ngIf="statusCode === 201" [ngClass]="'success'">
+					Vehiculo Ingresado correctamente</div>
+				<div *ngIf="statusCode === 409" [ngClass]="'warnnig'">
+					{{mensaje}}</div>
+			</div>
+		</div>
+	</div>
+</form>
+

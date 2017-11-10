@@ -10,17 +10,25 @@ import { Observable } from 'rxjs/Rx';
 export class RegistroService {
   // URLs for CRUD operations
   allRegistrosUrl = 'http://localhost:8089/registros/activos';
+  newRegistroUrl= 'http://localhost:8089/registros/create';
   // constructor
   constructor(private http: Http) {
   }
 
-  // funcion
+  // retorna todos registros
   getAllregistros(): Observable<Registro[]> {
     return this.http.get(this.allRegistrosUrl)
       .map(this.extractData)
       .catch(this.handleError);
-
   }
+  // Crea registros
+  createRegistro(registro: Registro): Observable<number> {
+    const cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: cpHeaders });
+      return this.http.post(this.newRegistroUrl, registro, options)
+        .map(success => success.status)
+        .catch(this.handleError);
+}
 
   // Extracion de datos
   private extractData(res: Response) {
